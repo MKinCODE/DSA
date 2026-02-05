@@ -1,16 +1,13 @@
 #include<iostream>
 using namespace std;
 class Node{
+    public:
     int value;
     Node* next;
-    public:
-    Node();
     Node(int x){value=x;next=NULL;}
-    Node(int x, Node* pointer){value=x;next=pointer;}
 };
 int main(){
-    
-
-
+    Node* head = new Node(5);
+    cout<<endl<<head->value<<endl;
     return 0;
 }
