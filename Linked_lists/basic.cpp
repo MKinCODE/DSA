@@ -36,14 +36,6 @@ void insert_node(Node* &head){
         head=newNode;
         return;
     }
-    if(pos==n+1){
-        Node*temp=head;
-        while(temp->next!=NULL){
-            temp=temp->next;
-        }
-        temp->next=newNode;
-        return;
-    }
     Node* temp=head;
     for(int i=1;i<pos-1;i++){
         temp=temp->next;
