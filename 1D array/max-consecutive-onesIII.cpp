@@ -3,25 +3,20 @@
 using namespace std;
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int>& nums) {
-        int n= nums.size();
-        int left=0;
-        int right=n-1;
-        int k=n-1;
-        vector<int> ans(n);
-        while(left<=right){
-            int l=nums[left]*nums[left];
-            int r=nums[right]*nums[right];
-
-            if(l>r){
-                ans[k--]=l;
+    int longestOnes(vector<int>& nums, int k) {
+        int curr=0;int ans=0;int left=0;
+        for(int right=0;right<nums.size();right++){
+            if(nums[right]==0){
+                curr++;
+            }
+            while(curr>k){
+                if(nums[left]==0){
+                    curr--;
+                }
                 left++;
             }
-            else{
-                ans[k--]=r;
-                right--;
-            }
+            ans=max(ans,right-left+1);
         }
         return ans;
-        
-}};
+    }
+};
