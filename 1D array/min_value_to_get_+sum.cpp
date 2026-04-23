@@ -3,13 +3,15 @@
 using namespace std;
 class Solution {
 public:
-    vector<int> runningSum(vector<int>& nums) {
-        int n= nums.size();
-        vector<int> ans(n);
-        ans[0]=nums[0];
-        for(int i=1;i<n;i++){
-            ans[i]=ans[i-1]+nums[i];
+    int minStartValue(vector<int>& nums) {
+        int n=nums.size();
+        int prefix = 0;
+        int minvalue=__INT_MAX__;
+        for(int i=0;i<n;i++){
+            prefix+=nums[i];
+            minvalue=min(minvalue,prefix);
         }
-        return ans;
+        if(minvalue>=1) return 1;
+        return 1-minvalue;
     }
 };
