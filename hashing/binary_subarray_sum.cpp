@@ -34,3 +34,5 @@ public:
         return answer;
     }
 }; 
+
+// optimal approach: exact=atmost_subarray-atmost_subarray(goal-1) using concept of max-consecutive-oneslll
