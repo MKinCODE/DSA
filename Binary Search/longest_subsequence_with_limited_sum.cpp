@@ -16,6 +16,23 @@ public:
         return ans;
     }
 };
+//the upper_bound() is just STL implementation of Binary search which can be replaced with the code below:
+// int low = 0, high = n - 1;
+// int ans = -1;
+
+// while(low <= high) {
+//     int mid = low + (high - low) / 2;
+
+//     if(prefix[mid] <= query) {
+//         ans = mid;      // valid answer
+//         low = mid + 1; // try to find a larger valid index
+//     }
+//     else {
+//         high = mid - 1;
+//     }
+// }
+
+
 //less optimal:
 class Solution {
 public:
