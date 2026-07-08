@@ -1,6 +1,22 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+//best optimal sol
+class Solution {
+public:
+    int timeRequiredToBuy(vector<int>& tickets, int k) {
+        int size=tickets.size();
+        int sold=0;
+        for(int i=0; i<size; i++){
+            if(i<=k){
+                sold+=min(tickets[i],tickets[k]);
+            }
+            else{
+                sold+=min(tickets[i],tickets[k]-1);
+            }
+        }
+        return sold;
+    }
+};
 
 
 //further more optimal can be done using single queue with saving index
