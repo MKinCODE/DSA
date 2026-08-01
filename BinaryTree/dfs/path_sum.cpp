@@ -18,3 +18,21 @@ public:
         }
     }
 };
+
+//mine
+class Solution {
+public:
+    bool dfs(TreeNode* root, int target, int sum){
+        if(root==nullptr) return false;
+
+        sum+=root->val;
+
+        if(root->left==nullptr && root->right==nullptr && sum==target) return true;
+        
+        return dfs(root->left,target,sum) || dfs(root->right,target,sum);
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root==nullptr) return false;
+        return dfs(root,targetSum,0);
+    }
+};
