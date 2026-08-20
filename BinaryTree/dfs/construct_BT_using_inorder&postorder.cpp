@@ -10,29 +10,26 @@ struct TreeNode {
 };
 
 class Solution {
-    vector<int> preod;
+    vector<int> postod;
     vector<int> inod;
 public:
-    TreeNode* build(int prestart, int preend, int instart, int inend){
-        if(prestart>preend) return nullptr;
+    TreeNode* build(int poststart, int postend, int instart, int inend){
+        if(poststart>postend) return nullptr;
 
-        int root_val = preod[prestart];
+        int root_val = postod[postend];
         TreeNode* root = new TreeNode(root_val);
+        int rootindex=instart;
+        while(inod[rootindex]!=root_val) {rootindex++;}
+        int leftsize = rootindex-instart;
+        root->left = build(poststart,poststart+leftsize-1,instart,instart+leftsize-1);
+        root->right = build(poststart+leftsize,postend-1,rootindex+1,inend);
 
-        int rootindex = instart;
-        while(inod[rootindex]!=root_val){
-            rootindex++;
-        }
-        int leftsize = rootindex - instart;
-        root->left = build(prestart+1,prestart+leftsize,instart,rootindex-1);
-        root->right = build(prestart+leftsize+1,preend,rootindex+1,inend);
-
-        return root; 
+        return root;
     }
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        preod = preorder;
-        inod = inorder;
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        postod=postorder;
+        inod=inorder;
+        return build(0,postod.size()-1,0,inod.size()-1);
 
-        return build(0,preod.size()-1,0,inod.size()-1);
     }
 };
