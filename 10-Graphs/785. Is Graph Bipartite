@@ -1,0 +1,25 @@
+1class Solution {
+2public:
+3    bool dfs(int node, int col, vector<vector<int>>& graph, vector<int>& color){
+4        color[node]=col;
+5
+6        for(int neighbour: graph[node]){
+7            if(color[neighbour]==-1){
+8                if(!dfs(neighbour,1-col,graph,color)) return false;
+9            }
+10            if(color[neighbour]==color[node]) return false;
+11        }
+12
+13        return true;
+14    }
+15    bool isBipartite(vector<vector<int>>& graph) {
+16        int n = graph.size();
+17        vector<int> color(n,-1);
+18        for(int i=0; i<n; i++){
+19            if(color[i]==-1){
+20                if(!dfs(i,0,graph,color)) return false;
+21            }
+22        }
+23        return true;
+24    }
+25};
